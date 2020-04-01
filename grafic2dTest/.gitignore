@@ -1,1 +1,6 @@
-nbproject/*
+/build/
+/nbproject/
+/.directory
+/build.xml
+/manifest.mf
+/dist/
