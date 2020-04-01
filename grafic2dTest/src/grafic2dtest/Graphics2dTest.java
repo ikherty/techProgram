@@ -1,13 +1,11 @@
 package grafic2dtest;
 
 /**
- *
  * @author qw
  */
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
@@ -26,21 +24,23 @@ public class Graphics2dTest extends JFrame {
         Graphics2D g2d = (Graphics2D) g;
         Integer x1 = 400, x2 = 500, x3 = 650, x4 = 750;
         Integer y1 = 50, y2 = 200, y3 = 400;
-        g2d.drawLine(x1, y1, x2, y1 - 15);//(1-2)
-        g2d.drawLine(x3, y1 - 15, x4, y1 + 15);//(3-4)
-        g2d.drawLine(x2, y1 - 15, x2, y2);//(2-5)
-        g2d.drawLine(x1, y1, x1, y3 + 30);//(1-7)
-        g2d.drawLine(x2, y2 + 70, x2, y3 + 10);//(11-8)
-        g2d.drawLine(x2, y2, x3, y1 - 15);//(5-3)
-        g2d.drawLine(x3 - 60, y2 + 30, x4, y1 + 15);//(6-4)
-
-        g2d.drawLine(x3 - 60, y2 + 30, x4 - 20, y3 - 10);//(6-10)
-        g2d.drawLine(x2, y2 + 70, x3 - 10, y3 + 30);//(11-9)
-        g2d.drawLine(x3 - 10, y3 + 30, x4 - 20, y3 - 10);//(9-10)
-        g2d.drawLine(x1, y3 + 30, x2, y3 + 10);
-        g2d.drawLine(x1, y3 + 30, x2, y3 + 10);
+        //вариант с прорисовкой каждого отрезка
+//        g2d.drawLine(x1, y1, x2, y1 - 15);//(1-2)   
+//        g2d.drawLine(x3, y1 - 15, x4, y1 + 15);//(3-4)  
+//        g2d.drawLine(x2, y1 - 15, x2, y2);//(2-5)   
+//        g2d.drawLine(x1, y1, x1, y3 + 30);//(1-7)
+//        g2d.drawLine(x2, y2 + 70, x2, y3 + 10);//(11-8)
+//        g2d.drawLine(x2, y2, x3, y1 - 15);//(5-3)   
+//        g2d.drawLine(x3 - 60, y2 + 30, x4, y1 + 15);//(6-4) 
+//        g2d.drawLine(x3 - 60, y2 + 30, x4 - 20, y3 - 10);//(6-10)   
+//        g2d.drawLine(x2, y2 + 70, x3 - 10, y3 + 30);//(11-9)    
+//        g2d.drawLine(x3 - 10, y3 + 30, x4 - 20, y3 - 10);//(9-10)   
+//        g2d.drawLine(x1, y3 + 30, x2, y3 + 10);//(7-8)
+        Polygon polK = new Polygon(new int[]{x1, x2, x2, x3, x4, x3-60, x4-20, x3-10, x2, x2, x1}, new int[]{y1, y1-15, y2, y1-15, y1+15, y2+30, y3-10, y3+30, y2+70, y3+10, y3+30}, 11);
+        Area a1K = new Area(polK);
+        g2d.fill(a1K);
     }
-
+    
     void drawGear(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         //g2d.setColor(Color.yellow);  
@@ -59,7 +59,6 @@ public class Graphics2dTest extends JFrame {
         Point2D point = new Point2D.Double(outerArc.getCenterX(), outerArc.getCenterY());
         Polygon pol = new Polygon(new int[]{350, 370, 450, 470,}, new int[]{150, 40, 40, 150}, 4);
         Area a1 = new Area(pol);
-        Rectangle r = a1.getBounds();
         AffineTransform at = g2d.getTransform();//new AffineTransform();
         AffineTransform atClone = (AffineTransform) at.clone();
         AffineTransform zero = AffineTransform.getRotateInstance(0);
