@@ -14,9 +14,10 @@ import java.util.Set;
  */
 public class VCaller6 {
 
-    private HashMap<String,Double> hd;
+    private HashMap<String,Double> hd= new HashMap<String,Double>();
 
-    public VCaller6() {
+    public VCaller6(HashMap<String,Double> hd) {
+        this.hd = hd;
     }
 
     /**
