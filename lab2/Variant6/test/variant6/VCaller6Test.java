@@ -41,18 +41,34 @@ public class VCaller6Test {
     /**
      * Test of multHash method, of class VCaller6.
      */
+//    @Test
+//    public void testMultHash() {
+//        System.out.println("multHash");
+//        HashMap<String, Double> ah = new HashMap<String, Double>();
+//        Double value = 3.14;
+//        ah.put("a", value);
+//        VCaller6 instance = new VCaller6(ah);
+//        boolean expResult = false;
+//        boolean result = instance.multHash(ah);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+    
     @Test
-    public void testMultHash() {
-        System.out.println("multHash");
-        HashMap<String, Double> ah = new HashMap<String, Double>();
-        Double value = 3.14;
-        ah.put("a", value);
-        VCaller6 instance = new VCaller6(ah);
-        boolean expResult = false;
-        boolean result = instance.multHash(ah);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+    public void testMultHash() {//новый тест
+    HashMap<String,Double> hd= new HashMap<String,Double>();
+        hd.put("a", 1.1);
+        hd.put("b", 2.0);
+        hd.put("c", 3.0);
+        hd.put("d", 1.1);
+        HashMap<String,Double> ad= new HashMap<String,Double>();
+        ad.put("e", 1.1);
+        ad.put("r", 2.0);
+        ad.put("c", 3.0);
+        ad.put("d", Double.NaN);//not a number
+        VCaller6 test=new VCaller6(hd);
+        assertEquals(test.multHash(ad), true);//проверяем на вхождение в условие
     }
 
     /**
