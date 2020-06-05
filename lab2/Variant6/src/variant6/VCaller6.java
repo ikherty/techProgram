@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class VCaller6 {
 
-    private HashMap<String,Double> hd= new HashMap<String,Double>();
+    private HashMap<String,Double> hd;
 
     public VCaller6(HashMap<String,Double> hd) {
         this.hd = hd;
@@ -28,14 +28,24 @@ public class VCaller6 {
     public boolean multHash(HashMap<String,Double> ah)
     {
         Set<String> ks=ah.keySet();
+        boolean flag=false;
         for(String s:ks)
         {
-            double x=hd.get(s);
-            double y=ah.get(s);
-            x*=y;
-            hd.put(s, x);
+            if(hd.containsKey(s))//проверяем на наличие значения
+            {
+                double x=hd.get(s);
+                double y=ah.get(s);
+                x*=y;
+                hd.put(s, x);
+                flag=true;//false если ни одно значение в hd не изменилось
+            }
         }
-        return false;
+//        Set<String> keys=hd.keySet(); //для проверки результата
+//        for (String k : keys) 
+//        {
+//            System.out.println(k + " " +hd.get(k));
+//        }
+        return flag;
     }
 
     /**
